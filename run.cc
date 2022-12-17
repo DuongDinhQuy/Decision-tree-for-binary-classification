@@ -3,31 +3,25 @@
 int main(int argc, char *argv[])
 {
     std::ifstream datafile(argv[1]);
-    
-    STRING_MATRIX datasheet;
-    QUANG::nhap(datasheet, &datafile);
-    datasheet = QUANG::transpose(datasheet);
-    for (auto trainingExample : datasheet)
+
+    QUANG::dataset database1(&datafile);
+
+    for (auto name : database1.feature_names)
+        std::cout << name;
+    std::cout << std::endl;
+
+    for (auto trainingExample : database1.records)
     {
         for (auto x : trainingExample)
             std::cout << x << " ";
         std::cout << std::endl;
     }
+
+    MATRIX tranposed = QUANG::transpose(database1.records);
+    for (auto x : tranposed)
+    {
+        for (auto y : x)
+            std::cout << y << " ";
+        std::cout << std::endl;
+    }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
