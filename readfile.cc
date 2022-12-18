@@ -1,17 +1,6 @@
 #include "readfile.hh"
 #include <stdlib.h>
 
-    QUANG::dataset::dataset() {}
-    QUANG::dataset::~dataset() {}
-    QUANG::dataset::dataset(std::ifstream *datafile)
-    {
-        std::string line;
-        getline(*datafile, line);
-        this->feature_names = remove_comma(&line[0]);
-        while (getline(*datafile, line))
-            (this->records).push_back(STR_TO_DOUBLE(remove_comma(&line[0])));
-    }
-
 
 std::vector<std::string> QUANG::remove_comma(char *str)
 {
