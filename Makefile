@@ -1,9 +1,15 @@
 CC = g++
 OPTION = -g
-OBJ = readfile.o container.o decisiontree.o
-ALL = run
+OBJ = fileIO.o container.o decisiontree.o
+ALL = getaccuracy predict
 
-run: run.o $(OBJ)
+all: $(ALL)
+tags: *.cc *.hh
+	$(CTAG) -R *
+
+getaccuracy: getaccuracy.o $(OBJ)
+	$(CC) $(OPTION) $< $(OBJ) -o $@
+predict: predict.o $(OBJ)
 	$(CC) $(OPTION) $< $(OBJ) -o $@
 %:%.o $(OBJ)
 	$(CC) $(OPTIONS) $< $(OBJ) -o $@
@@ -13,6 +19,6 @@ clean:
 	rm *.o
 	rm $(ALL)
 
-readfile.o: readfile.hh
+fileIO.o: fileIO.hh
 container.o: container.hh
 decisiontree.o: decisiontree.hh

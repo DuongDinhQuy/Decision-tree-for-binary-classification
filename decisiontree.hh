@@ -1,5 +1,5 @@
 #pragma once
-#include "readfile.hh"
+#include "fileIO.hh"
 #include "container.hh"
 #include <math.h>
 #include <iostream>
@@ -38,7 +38,7 @@ namespace F4HUSTER
         std::vector<std::string> feature_names;
 
         node(MATRIX records, std::vector<std::string> feature_names, std::string pre_index, bool is_left);
-        bool get_the_most();
+        double get_the_most();
         void show();
         void train();
     };

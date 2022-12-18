@@ -45,11 +45,11 @@ F4HUSTER::node::node(MATRIX records, std::vector<std::string> feature_names, std
 
     this->entropy = -this->purity * log2(this->purity) - (1 - this->purity) * log2(1 - this->purity);
 }
-bool F4HUSTER::node::get_the_most()
+double F4HUSTER::node::get_the_most()
 {
     if (this->purity > 0.5)
-        return true;
-    return false;
+        return 1;
+    return 0;
 }
 
 void F4HUSTER::node::show()
@@ -162,5 +162,5 @@ double F4HUSTER::model::predict(std::vector<double> &test, node *current)
             predict(test, current->right);
     }
     else
-        return current->purity;
+        return current->get_the_most();
 }
