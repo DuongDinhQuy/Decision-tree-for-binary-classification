@@ -72,20 +72,27 @@ namespace QUANG
         ~node() {}
         node *left;
         node *right;
+        std::string index;
 
         std::string identity_feature;
         double identity_record;
         bool is_left = true;
 
         std::vector<sample> samples;
-        double purity; // if full cat or dog then purity = 1 or 0
+        double purity; // if full of 1 then purity = 1
         double entropy;
-        uint size;
+        double size;
         std::vector<feature> features;
         std::vector<std::string> feature_names;
 
-        node(MATRIX records, std::vector<std::string> feature_names) : left(nullptr), right(nullptr), feature_names(feature_names)
+        node(MATRIX records, std::vector<std::string> feature_names, std::string pre_index, bool is_left) : is_left(is_left), left(nullptr), right(nullptr), feature_names(feature_names)
         {
+
+            if (this->is_left)
+                this->index = pre_index + "1";
+            else
+                this->index = pre_index + "0";
+
             for (auto record : records)
                 (this->samples).push_back(sample(record)); // samples initiation
 
@@ -95,26 +102,34 @@ namespace QUANG
                 (this->features).push_back(feature(feature_names[i], records[i]));
 
             this->size = (this->samples).size();
-            uint count = 0;
+            double count = 0;
             for (auto x : samples)
-                if (x.tag == (this->samples)[0].tag)
+                if (x.tag == 1 /*(this->samples)[0].tag*/)
                     count++;
 
             this->purity = count * 1.0 / size; // what if size == 0 ????
 
             this->entropy = -this->purity * log2(this->purity) - (1 - this->purity) * log2(1 - this->purity);
         }
+        bool get_the_most()
+        {
+            if (this->purity > 0.5)
+                return true;
+            return false;
+        }
 
         void show()
         {
-            if (this->is_left)
-                std::cout << COUNT_Q++ << ". " << this->identity_feature << " > " << this->identity_record << std::endl;
-            else
-                std::cout << COUNT_Q++ << ". " << this->identity_feature << " <= " << this->identity_record << std::endl;
-
-            // std::cout<<this->entropy<<" ";
             if (this->left != nullptr)
                 left->show();
+
+            std::cout << this->index;
+            if (this->is_left)
+                std::cout << ". " << this->identity_feature << " > " << this->identity_record << std::endl;
+            else
+                std::cout << ". " << this->identity_feature << " <= " << this->identity_record << std::endl;
+
+            // std::cout<<this->entropy<<" ";
 
             if (this->right != nullptr)
                 right->show();
@@ -137,34 +152,36 @@ namespace QUANG
                         else
                             RIGHT.push_back((this->samples)[i].full_info);
                     }
-
-                    if (this->left == nullptr && this->right == nullptr)
+                    if (RIGHT.size() != 0 && LEFT.size() != 0)
                     {
-                        this->left = new node(LEFT, this->feature_names);
-                        (this->left)->identity_feature = (this->features)[j].name;
-                        (this->left)->identity_record = key;
+                        if (this->left == nullptr && this->right == nullptr)
+                        {
+                            this->left = new node(LEFT, this->feature_names, this->index, true);
+                            (this->left)->identity_feature = (this->features)[j].name;
+                            (this->left)->identity_record = key;
 
-                        this->right = new node(RIGHT, this->feature_names);
-                        (this->right)->identity_feature = (this->features)[j].name;
-                        (this->right)->identity_record = key;
-                        (this->right)->is_left = false;
-                    }
+                            this->right = new node(RIGHT, this->feature_names, this->index, false);
+                            (this->right)->identity_feature = (this->features)[j].name;
+                            (this->right)->identity_record = key;
+                            (this->right)->is_left = false;
+                        }
 
-                    LEFT_IG = this->entropy - (this->left)->entropy;
-                    RIGHT_IG = this->entropy - (this->right)->entropy;
+                        LEFT_IG = this->entropy - (this->left)->entropy;
+                        RIGHT_IG = this->entropy - (this->right)->entropy;
 
-                    if (max(LEFT_IG, RIGHT_IG) > IG)
-                    {
-                        this->left = new node(LEFT, this->feature_names);
-                        (this->left)->identity_feature = (this->features)[j].name;
-                        (this->left)->identity_record = key;
+                        if (max(LEFT_IG, RIGHT_IG) > IG)
+                        {
+                            this->left = new node(LEFT, this->feature_names, this->index, true);
+                            (this->left)->identity_feature = (this->features)[j].name;
+                            (this->left)->identity_record = key;
 
-                        this->right = new node(RIGHT, this->feature_names);
-                        (this->right)->identity_feature = (this->features)[j].name;
-                        (this->right)->identity_record = key;
-                        (this->right)->is_left = false;
+                            this->right = new node(RIGHT, this->feature_names, this->index, false);
+                            (this->right)->identity_feature = (this->features)[j].name;
+                            (this->right)->identity_record = key;
+                            (this->right)->is_left = false;
 
-                        IG = max(LEFT_IG, RIGHT_IG);
+                            IG = max(LEFT_IG, RIGHT_IG);
+                        }
                     }
                 }
             }
@@ -180,11 +197,10 @@ namespace QUANG
         ~model() {}
         QUANG::dataset data;
         node *root;
-        node *iterator;
         model(QUANG::dataset &data) : data(data)
         {
-            this->root = new node(data.records, data.feature_names);
-            this->iterator = this->root;
+            std::string root_index = "";
+            this->root = new node(data.records, data.feature_names, root_index, true);
         }
 
         void train_model(node *current)
@@ -203,5 +219,26 @@ namespace QUANG
             if (this->root != nullptr)
                 (this->root)->show();
         }
+
+        double predict(std::vector<double> &test, node *current)
+        {
+            if(current->left != nullptr && current->right != nullptr){
+            uint i = 0;
+            for (; i < (this->data).feature_names.size(); i++)
+                if ((this->data).feature_names[i] == current->left->identity_feature)
+                    break;
+
+            if (test[i] > current->left->identity_record)
+            {
+                    predict(test, current->left);
+            }
+            else
+            {
+                    predict(test, current->right);
+            }
+        }
+        else return current->purity;
+        }
     };
+
 }

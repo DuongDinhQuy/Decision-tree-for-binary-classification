@@ -55,6 +55,7 @@ std::vector<double> QUANG::STR_TO_DOUBLE(std::vector<std::string> input)
 
 MATRIX QUANG::transpose(MATRIX &records)
 {
+    if(records.size() == 0) return records;
     MATRIX trans;
     std::vector<double> *feature = new std::vector<double>(records.size());
 
