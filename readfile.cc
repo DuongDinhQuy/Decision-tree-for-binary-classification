@@ -2,7 +2,7 @@
 #include <stdlib.h>
 
 
-std::vector<std::string> QUANG::remove_comma(char *str)
+std::vector<std::string> F4HUSTER::remove_comma(char *str)
 {
     std::vector<std::string> words;
 
@@ -15,7 +15,7 @@ std::vector<std::string> QUANG::remove_comma(char *str)
     return words;
 }
 
-double QUANG::arrayToNumber(char *s)
+double F4HUSTER::arrayToNumber(char *s)
 {
     int a = 0;
     int b = 0;
@@ -33,7 +33,7 @@ double QUANG::arrayToNumber(char *s)
     return (b > 1 ? (double)a / b : a);
 }
 
-std::vector<double> QUANG::STR_TO_DOUBLE(std::vector<std::string> input)
+std::vector<double> F4HUSTER::STR_TO_DOUBLE(std::vector<std::string> input)
 {
     std::vector<double> output;
     for (auto word : input)
@@ -42,7 +42,7 @@ std::vector<double> QUANG::STR_TO_DOUBLE(std::vector<std::string> input)
 }
 
 
-MATRIX QUANG::transpose(MATRIX &records)
+MATRIX F4HUSTER::transpose(MATRIX &records)
 {
     if(records.size() == 0) return records;
     MATRIX trans;

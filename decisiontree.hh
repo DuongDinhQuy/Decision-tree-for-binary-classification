@@ -6,7 +6,7 @@
 
 #define __ENTROPY__ 0.1
 
-namespace QUANG
+namespace F4HUSTER
 {
     // return max of a and b
     template <class T>
@@ -42,7 +42,7 @@ namespace QUANG
         void show();
         void train();
     };
-    
+
     /***********************************Class_model***********************************/
     // the decision tree
     class model
@@ -50,9 +50,9 @@ namespace QUANG
     public:
         model();
         ~model();
-        QUANG::dataset data;
+        F4HUSTER::dataset data;
         node *root;
-        model(QUANG::dataset &data);
+        model(F4HUSTER::dataset &data);
         void train_model(node *current);
         void show();
         double predict(std::vector<double> &test, node *current);

@@ -1,13 +1,13 @@
 #include "decisiontree.hh"
 
 template <class T>
-T QUANG::max(T a, T b)
+T F4HUSTER::max(T a, T b)
 {
     if (a > b)
         return a;
     return b;
 }
-double QUANG::log2(double p)
+double F4HUSTER::log2(double p)
 {
     if (!p)
         return 0;
@@ -17,9 +17,9 @@ double QUANG::log2(double p)
 /***********************************Class_node***********************************/
 // node of the tree
 
-QUANG::node::node() {}
-QUANG::node::~node() {}
-QUANG::node::node(MATRIX records, std::vector<std::string> feature_names, std::string pre_index, bool is_left) : is_left(is_left), left(nullptr), right(nullptr), feature_names(feature_names)
+F4HUSTER::node::node() {}
+F4HUSTER::node::~node() {}
+F4HUSTER::node::node(MATRIX records, std::vector<std::string> feature_names, std::string pre_index, bool is_left) : is_left(is_left), left(nullptr), right(nullptr), feature_names(feature_names)
 {
 
     if (this->is_left)
@@ -31,7 +31,7 @@ QUANG::node::node(MATRIX records, std::vector<std::string> feature_names, std::s
         (this->samples).push_back(sample(record)); // samples initiation
 
     // features initiation
-    records = QUANG::transpose(records);
+    records = F4HUSTER::transpose(records);
     for (int i = 0; i < records.size() - 1; i++)
         (this->features).push_back(feature(feature_names[i], records[i]));
 
@@ -45,14 +45,14 @@ QUANG::node::node(MATRIX records, std::vector<std::string> feature_names, std::s
 
     this->entropy = -this->purity * log2(this->purity) - (1 - this->purity) * log2(1 - this->purity);
 }
-bool QUANG::node::get_the_most()
+bool F4HUSTER::node::get_the_most()
 {
     if (this->purity > 0.5)
         return true;
     return false;
 }
 
-void QUANG::node::show()
+void F4HUSTER::node::show()
 {
     if (this->left != nullptr)
         left->show();
@@ -69,7 +69,7 @@ void QUANG::node::show()
         right->show();
 }
 
-void QUANG::node::train()
+void F4HUSTER::node::train()
 {
     double LEFT_IG = 0, RIGHT_IG = 0, IG = 0;
     for (int j = 0; j < (this->features).size(); j++) // diabetes j : 0 -> 7
@@ -124,15 +124,15 @@ void QUANG::node::train()
 /***********************************Class_model***********************************/
 // the decision tree
 
-QUANG::model::model() {}
-QUANG::model::~model() {}
-QUANG::model::model(QUANG::dataset &data) : data(data)
+F4HUSTER::model::model() {}
+F4HUSTER::model::~model() {}
+F4HUSTER::model::model(F4HUSTER::dataset &data) : data(data)
 {
     std::string root_index = "";
     this->root = new node(data.records, data.feature_names, root_index, true);
 }
 
-void QUANG::model::train_model(node *current)
+void F4HUSTER::model::train_model(node *current)
 {
     if (current->entropy > __ENTROPY__)
         current->train();
@@ -141,17 +141,17 @@ void QUANG::model::train_model(node *current)
     train_model(current->left);
     train_model(current->right);
 }
-void QUANG::model::show()
+void F4HUSTER::model::show()
 {
     if (this->root != nullptr)
         (this->root)->show();
 }
 
-double QUANG::model::predict(std::vector<double> &test, node *current)
+double F4HUSTER::model::predict(std::vector<double> &test, node *current)
 {
     if (current->left != nullptr && current->right != nullptr)
     {
-        uint i = 0;
+        unsigned int i = 0;
         for (; i < (this->data).feature_names.size(); i++)
             if ((this->data).feature_names[i] == current->left->identity_feature)
                 break;

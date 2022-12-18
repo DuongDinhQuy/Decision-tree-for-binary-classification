@@ -5,7 +5,7 @@
 
 #define MATRIX std::vector<std::vector<double>>
 
-namespace QUANG
+namespace F4HUSTER
 {
     std::vector<std::string> remove_comma(char *str);
     double arrayToNumber(char *s);

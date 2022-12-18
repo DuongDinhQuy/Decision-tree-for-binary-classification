@@ -9,12 +9,12 @@ int main(int argc, char *argv[])
     std::ifstream validationfile(argv[2]);
     // std::ifstream testfile(argv[3]);
 
-    QUANG::dataset trainset(&trainfile);
-    QUANG::dataset validationset(&validationfile);
-    // QUANG::dataset testset(&testfile);
+    F4HUSTER::dataset trainset(&trainfile);
+    F4HUSTER::dataset validationset(&validationfile);
+    // F4HUSTER::dataset testset(&testfile);
 
     // train model
-    QUANG::model diabetes(trainset);
+    F4HUSTER::model diabetes(trainset);
     diabetes.train_model(diabetes.root);
 
     // diabetes.show();
@@ -28,9 +28,9 @@ int main(int argc, char *argv[])
     //     std::cout << x << std::endl;
 
 
-    MATRIX val = QUANG::transpose(validationset.records);
+    MATRIX val = F4HUSTER::transpose(validationset.records);
     std::vector<double> outcomes = val[val.size()-1];
-    uint count = 0;
+    unsigned int count = 0;
     for(int i=0;i<predicts.size();i++){
         if(predicts[i] == outcomes[i]) count++;
     }

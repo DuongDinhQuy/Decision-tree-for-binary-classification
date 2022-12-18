@@ -2,7 +2,7 @@
 #include "readfile.hh"
 #include <set>
 
-namespace QUANG
+namespace F4HUSTER
 {
     /***********************************Class_dataset***********************************/
     // use to contain datasheet
