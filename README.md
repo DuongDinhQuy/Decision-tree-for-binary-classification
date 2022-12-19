@@ -1,10 +1,9 @@
 # Decision Tree for Binary Classification Project
 ## Overview
 
-* In this project, by using a decision tree, we can predict whether a patient is having diabetes or not based on a variety of health attributes, normally in a continuous form. 
-The main algorithm used to build the decision tree is Iterative Dichotomiser 3 (ID3). Although ID3 is a decision tree algorithm applied to classification problems where all the attributes are in categorical form, but other datasets that use continuous attributes (numeric), we can still use it by posing series of questions based on the thresholds contained in that attribute. 
-Please note that the accuracy of this model is only approx. 70%. Because in ID3, we need to determine the order of attributes to be considered at each step. For problems with many attributes and each attribute has many different values, finding the optimal solution is often very difficult. The accuracy of the model is not higher because the ID3 algorithm is more suitable for discrete attributes, not continuous attributes like the dataset in use. Then overfitting may occur in some cases.
+* In this project, we use `Decision Tree` to predict whether a patient is having diabetes or not based on a variety of health attributes.
 
+* The algorithm used to build the `Decision Tree` is Iterative Dichotomiser 3 `ID3` - an algorithm invented by Ross Quinlan used to generate a `Decision Tree` from a dataset.  
 
 * This project contains C++ libraries and programs to:
 
