@@ -57,5 +57,4 @@ namespace Pig4
         void show();
         double predict(std::vector<double> &test, node *current);
     };
-
 }

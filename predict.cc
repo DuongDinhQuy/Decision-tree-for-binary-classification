@@ -5,7 +5,8 @@
 
 int main(int argc, char *argv[])
 {
-    if (argc != 2){
+    if (argc != 2)
+    {
         Pig4::_throw(argv[0], 2);
     }
     else
@@ -17,7 +18,7 @@ int main(int argc, char *argv[])
         // train model
         Pig4::model diabetes(trainset);
         diabetes.train_model(diabetes.root);
-        
+
         std::vector<double> input;
         double x;
         for (int i = 0; i < trainset.feature_names.size() - 1; i++)
@@ -30,5 +31,6 @@ int main(int argc, char *argv[])
             std::cout << "Yes" << std::endl;
         else
             std::cout << "No" << std::endl;
+        diabetes.show(); // show tree
     }
 }

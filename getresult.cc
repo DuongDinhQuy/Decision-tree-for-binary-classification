@@ -45,16 +45,34 @@ int main(int argc, char *argv[])
 
         MATRIX val = Pig4::transpose(validationset.records);
         std::vector<double> outcomes = val[val.size() - 1];
-        unsigned int count = 0;
+
+        unsigned int true_positive = 0;
+        unsigned int true_negative = 0;
+        unsigned int false_positive = 0;
+        unsigned int false_negative = 0;
+
         for (int i = 0; i < predicts.size(); i++)
         {
-            if (predicts[i] == outcomes[i])
-                count++;
+            if (predicts[i] == 1)
+            {
+                if (outcomes[i] == 1)
+                    true_positive++;
+                else
+                    false_positive++;
+            }
+            else
+            {
+                if (outcomes[i] == 1)
+                    false_negative++;
+                else
+                    true_negative++;
+            }
         }
-        double accuracy = count * 1.0 / predicts.size();
+        double accuracy = (true_positive + true_negative) * 1.0 / predicts.size();
         std::cout << "Accuracy: " << accuracy << std::endl;
 
         // precision
-        
+        double precision = true_positive * 1.0 / (true_positive + false_positive);
+        std::cout << "Precision: " << precision << std::endl;
     }
 }
