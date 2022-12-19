@@ -27,7 +27,7 @@ Once the installation is finished, verify the installation of these packages by 
 To check your `g++` compiler's version, run the following command on `Command Prompt`:
 `g++ --version`
 
-Follow this link to update/download `minGW` if `g++` version < 7.5.0:
+Follow this link to update/download `minGW` if `g++` version < 11:
 
 https://nuwen.net/mingw.html
 
