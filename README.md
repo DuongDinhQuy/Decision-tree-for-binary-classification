@@ -10,7 +10,7 @@
     - Predict the outcome given training data and infomations of the sample - <em>predict</em> 
     - Return the model prediction in `result.txt`, accuracy and precision in terminal - <em>getresult</em>
 
-The source code has been updated to modern C++ style and for cross-platform use.
+* The source code has been updated to modern C++ style and for cross-platform use.
 
 ## Requirements / dependencies
 
