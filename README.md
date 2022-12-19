@@ -4,7 +4,7 @@
 This project contains C++ libraries and programs to 
 
 - <em>predict</em> (predict the outcome given training data and infomations of the sample)
-- <em>getaccuracy</em> (return the model prediction accuracy)
+- <em>getresult</em> (return the model prediction accuracy)
 
 The source code has been updated to modern C++ style and for cross-platform use.
 
