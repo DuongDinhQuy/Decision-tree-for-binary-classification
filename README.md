@@ -56,4 +56,7 @@ Run `Command Prompt` as administrator and run the following command to install G
 
 To build all programs, run `make` command in this project's root directory by either using `Visual Studio Code` or `Command Prompt`.
 
+## Reference
+
+* Data package: https://www.kaggle.com/datasets/mathchi/diabetes-data-set
 
