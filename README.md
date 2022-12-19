@@ -30,7 +30,7 @@ On `Unix` (Linux, Mac OS, and Cygwin) and `Windows`, the code compiles using the
 * To check your `g++` compiler's version, run the following command on `Command Prompt`:
 `g++ --version`
 
-* Follow this link to update/download `minGW` if `g++` version < 11:
+* Follow the instruction in the link below to update/download `minGW` if `g++` version < 11:
 
 https://nuwen.net/mingw.html
 
@@ -43,7 +43,7 @@ https://nuwen.net/mingw.html
 * Wait a few seconds for the command to complete.
 If you don't see any errors, you are ready to use Chocolatey! Type `choco` or `choco -?` to check if the installation is complete.
 
-* Check this link for more infomation: https://docs.chocolatey.org/en-us/choco/setup
+* Read the instruction in the following link for more infomation: https://docs.chocolatey.org/en-us/choco/setup
 
 #### Install MAKE
 
