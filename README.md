@@ -35,12 +35,12 @@ https://nuwen.net/mingw.html
 
 First run `Command Prompt` as administrator, then run the following command:
 
-`Set-ExecutionPolicy Bypass -Scope Process -Force; [System.Net.ServicePointManager]::SecurityProtocol = [System.Net.ServicePointManager]::SecurityProtocol -bor 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))`
+`@"%SystemRoot%\System32\WindowsPowerShell\v1.0\powershell.exe" -NoProfile -InputFormat None -ExecutionPolicy Bypass -Command "[System.Net.ServicePointManager]::SecurityProtocol = 3072; iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))" && SET "PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin"`
 
 Wait a few seconds for the command to complete.
 If you don't see any errors, you are ready to use Chocolatey! Type `choco` or `choco -?` to check if the installation is complete.
 
-Check this link for more infomation: https://chocolatey.org/install#individual
+Check this link for more infomation: https://docs.chocolatey.org/en-us/choco/setup
 
 #### Install MAKE
 
