@@ -15,7 +15,7 @@
 ## Requirements / dependencies
 
 On `Unix` (Linux, Mac OS, and Cygwin) and `Windows`, the code compiles using the `g++` compilers (version 7.5.0 or higher) and GNU `make`.
-### Unix
+### For Unix users
 
 #### Update / install g++ compiler
 * Run the following commands to install `g++`: 
@@ -24,7 +24,7 @@ On `Unix` (Linux, Mac OS, and Cygwin) and `Windows`, the code compiles using the
 
 * Once the installation is finished, verify the installation of these packages by checking the G++ version on your system with the following command:
  `g++ --version`
-### Windows
+### For Windows users
 
 #### Update / download minGW
 * To check your `g++` compiler's version, run the following command on `Command Prompt`:
