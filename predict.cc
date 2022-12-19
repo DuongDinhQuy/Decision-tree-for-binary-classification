@@ -6,18 +6,18 @@
 int main(int argc, char *argv[])
 {
     if (argc != 2){
-        F4HUSTER::_throw(argv[0], 2);
+        Pig4::_throw(argv[0], 2);
     }
     else
     {
         std::ifstream trainfile(argv[1]);
 
-        F4HUSTER::dataset trainset(&trainfile);
+        Pig4::dataset trainset(&trainfile);
 
         // train model
-        F4HUSTER::model diabetes(trainset);
+        Pig4::model diabetes(trainset);
         diabetes.train_model(diabetes.root);
-
+        
         std::vector<double> input;
         double x;
         for (int i = 0; i < trainset.feature_names.size() - 1; i++)

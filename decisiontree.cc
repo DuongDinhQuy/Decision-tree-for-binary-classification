@@ -1,13 +1,13 @@
 #include "decisiontree.hh"
 
 template <class T>
-T F4HUSTER::max(T a, T b)
+T Pig4::max(T a, T b)
 {
     if (a > b)
         return a;
     return b;
 }
-double F4HUSTER::log2(double p)
+double Pig4::log2(double p)
 {
     if (!p)
         return 0;
@@ -17,9 +17,9 @@ double F4HUSTER::log2(double p)
 /***********************************Class_node***********************************/
 // node of the tree
 
-F4HUSTER::node::node() {}
-F4HUSTER::node::~node() {}
-F4HUSTER::node::node(MATRIX records, std::vector<std::string> feature_names, std::string pre_index, bool is_left) : is_left(is_left), left(nullptr), right(nullptr), feature_names(feature_names)
+Pig4::node::node() {}
+Pig4::node::~node() {}
+Pig4::node::node(MATRIX records, std::vector<std::string> feature_names, std::string pre_index, bool is_left) : is_left(is_left), left(nullptr), right(nullptr), feature_names(feature_names)
 {
 
     if (this->is_left)
@@ -31,7 +31,7 @@ F4HUSTER::node::node(MATRIX records, std::vector<std::string> feature_names, std
         (this->samples).push_back(sample(record)); // samples initiation
 
     // features initiation
-    records = F4HUSTER::transpose(records);
+    records = Pig4::transpose(records);
     for (int i = 0; i < records.size() - 1; i++)
         (this->features).push_back(feature(feature_names[i], records[i]));
 
@@ -45,14 +45,14 @@ F4HUSTER::node::node(MATRIX records, std::vector<std::string> feature_names, std
 
     this->entropy = -this->purity * log2(this->purity) - (1 - this->purity) * log2(1 - this->purity);
 }
-double F4HUSTER::node::get_the_most()
+double Pig4::node::get_the_most()
 {
     if (this->purity > 0.5)
         return 1;
     return 0;
 }
 
-void F4HUSTER::node::show()
+void Pig4::node::show()
 {
     if (this->left != nullptr)
         left->show();
@@ -69,7 +69,7 @@ void F4HUSTER::node::show()
         right->show();
 }
 
-void F4HUSTER::node::train()
+void Pig4::node::train()
 {
     double LEFT_IG = 0, RIGHT_IG = 0, IG = 0;
     for (int j = 0; j < (this->features).size(); j++) // diabetes j : 0 -> 7
@@ -124,15 +124,15 @@ void F4HUSTER::node::train()
 /***********************************Class_model***********************************/
 // the decision tree
 
-F4HUSTER::model::model() {}
-F4HUSTER::model::~model() {}
-F4HUSTER::model::model(F4HUSTER::dataset &data) : data(data)
+Pig4::model::model() {}
+Pig4::model::~model() {}
+Pig4::model::model(Pig4::dataset &data) : data(data)
 {
     std::string root_index = "";
     this->root = new node(data.records, data.feature_names, root_index, true);
 }
 
-void F4HUSTER::model::train_model(node *current)
+void Pig4::model::train_model(node *current)
 {
     if (current->entropy > __ENTROPY__)
         current->train();
@@ -141,13 +141,13 @@ void F4HUSTER::model::train_model(node *current)
     train_model(current->left);
     train_model(current->right);
 }
-void F4HUSTER::model::show()
+void Pig4::model::show()
 {
     if (this->root != nullptr)
         (this->root)->show();
 }
 
-double F4HUSTER::model::predict(std::vector<double> &test, node *current)
+double Pig4::model::predict(std::vector<double> &test, node *current)
 {
     if (current->left != nullptr && current->right != nullptr)
     {

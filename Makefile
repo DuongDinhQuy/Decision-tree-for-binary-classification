@@ -1,13 +1,13 @@
 CC = g++
 OPTION = -g
 OBJ = fileIO.o container.o decisiontree.o
-ALL = getaccuracy predict
+ALL = getresult predict
 
 all: $(ALL)
 tags: *.cc *.hh
 	$(CTAG) -R *
 
-getaccuracy: getaccuracy.o $(OBJ)
+getresult: getresult.o $(OBJ)
 	$(CC) $(OPTION) $< $(OBJ) -o $@
 predict: predict.o $(OBJ)
 	$(CC) $(OPTION) $< $(OBJ) -o $@

@@ -6,7 +6,7 @@
 
 #define __ENTROPY__ 0.1
 
-namespace F4HUSTER
+namespace Pig4
 {
     // return max of a and b
     template <class T>
@@ -50,9 +50,9 @@ namespace F4HUSTER
     public:
         model();
         ~model();
-        F4HUSTER::dataset data;
+        Pig4::dataset data;
         node *root;
-        model(F4HUSTER::dataset &data);
+        model(Pig4::dataset &data);
         void train_model(node *current);
         void show();
         double predict(std::vector<double> &test, node *current);

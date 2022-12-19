@@ -2,7 +2,7 @@
 #include "fileIO.hh"
 #include <set>
 
-namespace F4HUSTER
+namespace Pig4
 {
     /***********************************Class_dataset***********************************/
     // use to contain datasheet

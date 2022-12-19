@@ -1,6 +1,6 @@
 #include "fileIO.hh"
 
-std::vector<std::string> F4HUSTER::remove_comma(char *str)
+std::vector<std::string> Pig4::remove_comma(char *str)
 {
     std::vector<std::string> words;
 
@@ -13,7 +13,7 @@ std::vector<std::string> F4HUSTER::remove_comma(char *str)
     return words;
 }
 
-double F4HUSTER::arrayToNumber(char *s)
+double Pig4::arrayToNumber(char *s)
 {
     int a = 0;
     int b = 0;
@@ -31,7 +31,7 @@ double F4HUSTER::arrayToNumber(char *s)
     return (b > 1 ? (double)a / b : a);
 }
 
-std::vector<double> F4HUSTER::STR_TO_DOUBLE(std::vector<std::string> input)
+std::vector<double> Pig4::STR_TO_DOUBLE(std::vector<std::string> input)
 {
     std::vector<double> output;
     for (auto word : input)
@@ -39,7 +39,7 @@ std::vector<double> F4HUSTER::STR_TO_DOUBLE(std::vector<std::string> input)
     return output;
 }
 
-MATRIX F4HUSTER::transpose(MATRIX &records)
+MATRIX Pig4::transpose(MATRIX &records)
 {
     if (records.size() == 0)
         return records;
@@ -57,7 +57,7 @@ MATRIX F4HUSTER::transpose(MATRIX &records)
     return trans;
 }
 
-void F4HUSTER::_throw(char *exe_name, int argc)
+void Pig4::_throw(char *exe_name, int argc)
 {
     std::cout << "Usage: "<<exe_name<<" ";
     for (int i = 0; i < argc - 1; i++)

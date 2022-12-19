@@ -7,7 +7,7 @@
 
 #define MATRIX std::vector<std::vector<double>>
 
-namespace F4HUSTER
+namespace Pig4
 {
     std::vector<std::string> remove_comma(char *str);
     double arrayToNumber(char *s);
