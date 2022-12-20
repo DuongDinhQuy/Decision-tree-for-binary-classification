@@ -14,7 +14,7 @@
 
 ## Requirements / dependencies
 
-On `Unix` (Linux, Mac OS, and Cygwin) and `Windows`, the code compiles using the `g++` compilers (version 7.5.0 or higher) and GNU `make`.
+On `Unix` (Linux, Mac OS, and Cygwin) and `Windows`, the code compiles using the `g++` compilers (version 11 or higher) and GNU `make`.
 ### For Unix users
 
 #### Update / install g++ compiler
